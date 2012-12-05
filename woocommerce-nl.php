@@ -2,9 +2,9 @@
 /*
 Plugin Name: WooCommerce (nl)
 Plugin URI: http://pronamic.eu/wp-plugins/woocommerce-nl/
-Description: Extends the WooCommerce plugin and add-ons with the Dutch language: <strong>WooCommerce</strong> 1.6.5.2 | <strong>WooCommerce EU VAT Number</strong> 1.4
+Description: Extends the WooCommerce plugin and add-ons with the Dutch language: <strong>WooCommerce</strong> 1.6.5.2 | <strong>WooCommerce EU VAT Number</strong> 1.4 | <strong>WooCommerce Subscribe to Newsletter</strong> 1.0.4 
 
-Version: 0.3.18
+Version: 0.3.19
 Requires at least: 3.0
 
 Author: Pronamic
@@ -80,10 +80,12 @@ class WooCommerceNL {
 		if ( self::$language == null ) {
 			self::$language = get_option( 'WPLANG', WPLANG );
 			self::$is_dutch = ( self::$language == 'nl' || self::$language == 'nl_NL' );
+		}
 
-			if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
-				self::$is_dutch = ( ICL_LANGUAGE_CODE == 'nl' );
-			}
+		// The ICL_LANGUAGE_CODE constant is defined from an plugin, so this constant
+		// is not always defined in the first 'load_textdomain_mofile' filter call
+		if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
+			self::$is_dutch = ( ICL_LANGUAGE_CODE == 'nl' );
 		}
 
 		if ( self::$is_dutch ) {
@@ -109,10 +111,18 @@ class WooCommerceNL {
 			}
 	
 			// WooCommerce EU VAT Number
-			$is_woocommerce_domain = ( $domain == 'wc_eu_vat_number' );
-	
 			if ( $domain == 'wc_eu_vat_number' ) {
 				$new_mo_file = self::get_mo_file( 'woocommerce-eu-vat-number', 'cpr' );
+			}
+
+			// WooCommerce - Gravity Forms Product Add-Ons
+			if ( $domain == 'wc_gf_addons' ) {
+				$new_mo_file = self::get_mo_file( 'woocommerce-gravityforms-product-addons', 'cpr' );
+			}
+
+			// WooCommerce Subscribe to Newsletter
+			if ( $domain == 'wc_subscribe_to_newsletter' ) {
+				$new_mo_file = self::get_mo_file( 'woocommerce-subscribe-to-newsletter', 'cpr' );
 			}
 	
 			// Check if the new file is readable
