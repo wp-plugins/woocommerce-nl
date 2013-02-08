@@ -2,9 +2,9 @@
 /*
 Plugin Name: WooCommerce (nl)
 Plugin URI: http://pronamic.eu/wp-plugins/woocommerce-nl/
-Description: Extends the WooCommerce plugin and add-ons with the Dutch language: <strong>WooCommerce</strong> 1.6.6 | <strong>WooCommerce EU VAT Number</strong> 1.4 | <strong>WooCommerce Subscribe to Newsletter</strong> 1.0.4 
+Description: Extends the WooCommerce plugin and add-ons with the Dutch language: <strong>WooCommerce</strong> 1.6.6 | <strong>WooCommerce EU VAT Number</strong> 1.4 | <strong>WooCommerce Subscribe to Newsletter</strong> 1.0.4 | <strong>WooCommerce Gateway Fees</strong> 1.2.1
 
-Version: 0.3.20
+Version: 0.3.21
 Requires at least: 3.0
 
 Author: Pronamic
@@ -123,6 +123,11 @@ class WooCommerceNL {
 			// WooCommerce Subscribe to Newsletter
 			if ( $domain == 'wc_subscribe_to_newsletter' ) {
 				$new_mo_file = self::get_mo_file( 'woocommerce-subscribe-to-newsletter', 'cpr' );
+			}
+
+			// WooCommerce Subscribe to Newsletter
+			if ( $domain == 'x3m_gf' ) {
+				$new_mo_file = self::get_mo_file( 'woocommerce-gateway-fees', 'cpr' );
 			}
 	
 			// Check if the new file is readable
